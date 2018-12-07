@@ -1,11 +1,14 @@
-export interface GameState {
+import { type } from "os";
+
+interface GameState {
   players: Player[];
   // Torn between this, and making it a boolean field on the player.
   dealer: Player;
   currentHand: Hand;
 }
 
-export interface Hand {
+//Yeah, I know this is bad and ambiguous 
+interface Hand {
   cardsInHand: HandOfCards[];
   cardsInCrib: HandOfCards;
   playedCards: { player: Player; card: Card }[];
@@ -14,23 +17,25 @@ export interface Hand {
   whoseTurn: Player;
 }
 
-export interface HandOfCards {
+interface HandOfCards {
   player: Player;
   cards: Card[];
 }
-export interface Player {
+interface Player {
   id: string;
   score: number;
 }
 
-export interface Card {
+interface Card {
   suit: Suit;
   number: number;
 }
 
-export enum Suit {
+enum Suit {
   Hearts = "HEARTS",
   Spades = "SPADES",
   Diamonds = "DIAMONDS",
   Clubs = "CLUBS"
 }
+
+export { Suit, Card, Hand, Player, HandOfCards }
