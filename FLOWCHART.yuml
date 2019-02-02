@@ -1,0 +1,4 @@
+//{type:// {type:activity}
+(start)-><a>[kettle empty]->(Fill Kettle)->|b|,<a>[kettle full]->|b|->(Boil Kettle)->|c|,|b|->(Add Tea Bag)->(Add Milk)->|c|->(Pour Water)->(end),(Pour Water)->(end)
+
+(start)->(Ask for Name)->(Deal new hand)->[Each pass 2 cards to dealer's crib]->(Turnup card, including Nobs)(Play proceeds; when I play a card, it should dispatch in response the addScore and toggleTurn actions)->(Count score for hand; off-dealer, dealer, dealer's crib)->(Deal new hand)

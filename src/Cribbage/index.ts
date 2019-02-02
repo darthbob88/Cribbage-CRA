@@ -14,7 +14,7 @@ import reducer from "./reducer";
 import * as duckSelectors from "./selectors";
 import * as duckOperations from "./operations";
 import * as duckActions from "./actions";
-import * as duckType from "./types";
+import * as duckType from "./model";
 
 export {
     duckSelectors,

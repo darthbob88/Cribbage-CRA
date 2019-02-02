@@ -5,7 +5,7 @@ Together with the operations, the selectors are part of the public interface of 
 These functions make sense when you have a more complex app state.
 
 */
-import * as CribbageTypes from "./types";
+import * as CribbageTypes from "./model";
 
 function checkIfDuckIsInRange(state : CribbageTypes.GameState ) {
     return state.duck.distance > 1000;

@@ -1,5 +1,5 @@
 ﻿import { fetch, addTask } from "domain-task";
-import { Player, Card, HandOfCards, GameState } from "./types";
+import { Player, Card, HandOfCards, GameState } from "./model";
 import { Reducer, Action } from "redux";
 
 //// Not sure if I'll actually use the full Redux machinery, or if I'll settle for just local state.
