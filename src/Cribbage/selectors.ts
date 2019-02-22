@@ -7,10 +7,21 @@ These functions make sense when you have a more complex app state.
 */
 import * as CribbageTypes from "./model";
 
-function checkIfDuckIsInRange(state : CribbageTypes.GameState ) {
-    return state.duck.distance > 1000;
+/**
+ * Cards in @player hand that haven't been played yet.
+ * @param player The player whose cards we need.
+ */
+function getVisibleCards(player:CribbageTypes.Player){
+    return [];
+}
+/**
+ * Cards in @player hand that can be reasonably played, without sending the running total above 31. 
+ * @param player 
+ */
+function getPlayableCards(player:CribbageTypes.Player){
+    return [];
 }
 
-export {
-    checkIfDuckIsInRange
+export {getPlayableCards,
+    getVisibleCards
 };
