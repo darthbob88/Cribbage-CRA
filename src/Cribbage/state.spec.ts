@@ -1,51 +1,38 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import { reducer } from "./reducer";
+import { reducer} from "./reducer";
 import * as actions from "./actions";
 import * as types from "./types";
 import fetchMock from "fetch-mock";
+import { GameState } from "./model";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-// describe('async actions', () => {
-//     afterEach(() => {
-//         fetchMock.restore()
-//     })
-
-//     it('creates FETCH_TODOS_SUCCESS when fetching todos has been done', () => {
-//         fetchMock.getOnce('/todos', {
-//             body: { todos: ['do something'] },
-//             headers: { 'content-type': 'application/json' }
-//         })
-
-//         const expectedActions = [
-//             { type: types.FETCH_TODOS_REQUEST },
-//             { type: types.FETCH_TODOS_SUCCESS, body: { todos: ['do something'] } }
-//         ]
-//         const store = mockStore({ todos: [] })
-
-//         return store.dispatch(actions.fetchTodos()).then(() => {
-//             // return of async actions
-//             expect(store.getActions()).toEqual(expectedActions)
-//         })
-//     })
-// })
+const getInitialState = (initial?: Partial<GameState>) =>
+  reducer(initial as GameState, {} as any);
 
 //  * ACCEPTANCE REQUIREMENTS
 
 //  * I should be able to tell the game my player name
 describe("Player name", () => {
+  afterEach(() => {
+    fetchMock.restore();
+  });
   it("should start with a blank name", () => {
-    expect(reducer(undefined, {})).toEqual([
-      { name: "", score: 0 },
-      { name: "", score: 0 }
-    ]);
+    const initialState = getInitialState();
+    expect(initialState).toMatchSnapshot();
   });
   it("should be able to update the name appropriately", () => {
-    expect(
-      reducer(undefined, { type: "SET_NAMES", names: ["Boris", "Natasha"] })
-    ).toEqual([{ name: "Boris", score: 0 }, { name: "Natasha", score: 0 }]);
+    const initialState = getInitialState();
+    const stateWithNames = reducer(initialState, {
+      type: types.SET_NAMES,
+      names: ["Boris", "Natasha"]
+    });
+    expect(stateWithNames.players).toEqual([
+      { name: "Boris", score: 0 },
+      { name: "Natasha", score: 0 }
+    ]);
   });
 });
 
