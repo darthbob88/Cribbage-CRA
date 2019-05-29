@@ -1,8 +1,8 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import { reducer} from "./reducer";
+import { reducer } from "./reducer";
 import * as actions from "./actions";
-import * as types from "./types";
+import {typeKeys} from "./types";
 import fetchMock from "fetch-mock";
 import { GameState } from "./model";
 
@@ -14,31 +14,40 @@ const getInitialState = (initial?: Partial<GameState>) =>
 
 //  * ACCEPTANCE REQUIREMENTS
 
-//  * I should be able to tell the game my player name
-describe("Player name", () => {
+//  * I should be able to initialize the game by telling it my name
+describe("Initializing the game", () => {
   afterEach(() => {
     fetchMock.restore();
   });
-  it("should start with a blank name", () => {
+  xit("should start with a blank name", () => {
     const initialState = getInitialState();
     expect(initialState).toMatchSnapshot();
   });
   it("should be able to update the name appropriately", () => {
     const initialState = getInitialState();
     const stateWithNames = reducer(initialState, {
-      type: types.SET_NAMES,
-      names: ["Boris", "Natasha"]
+      type: typeKeys.newGame,
+      playerNames: ["Boris", "Natasha"]
     });
     expect(stateWithNames.players).toEqual([
-      { name: "Boris", score: 0 },
-      { name: "Natasha", score: 0 }
+      {
+        id: "Boris",
+        score: 0
+      },
+      {
+        id: "Natasha",
+        score: 0
+      }
     ]);
+    //  * The game should then deal 6 cards to each player
+    const currentHand = stateWithNames.currentHand.cardsInHand;
+    expect(currentHand).toHaveLength(2);
+    expect(currentHand[0].cards).toHaveLength(6);
+    expect(currentHand[0].player).toEqual("Boris");
   });
+  //   * And then each player should be able to pass exactly two cards to the crib.
+  //   * This should be the dealer's crib, not the off-dealer.
 });
-
-//  * The game should then to deal 6 cards to each player
-//   * And then each player should be able to pass exactly two cards to the crib.
-//   * This should be the dealer's crib, not the off-dealer.
 
 //  * After passing to the crib, we should commence to the PLAY phase.
 //   * At this point, I should be able to play a card.

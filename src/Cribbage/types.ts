@@ -1,5 +1,8 @@
-const ADD_TASK = "app/task/ADD_TASK";
-const UPDATE_TASK = "app/task/UPDATE_TASK";
-const LOAD_TASKS_SUCCESS = "app/task/LOAD_TASKS_SUCCESS";
-const LOAD_SINGLE_TASK_SUCCESS = "app/task/LOAD_SINGLE_TASK_SUCCESS";
-export { ADD_TASK, UPDATE_TASK, LOAD_TASKS_SUCCESS, LOAD_SINGLE_TASK_SUCCESS };
+export enum typeKeys {
+  newGame = "NEW_GAME",
+  newHand = "NEW_HAND",
+  sendCardsToCrib = "SEND_CARDS_TO_CRIB",
+  playCard = "PLAY_CARD",
+  playGo = "PLAY_GO",
+  addPoints = "ADD_POINTS"
+}
