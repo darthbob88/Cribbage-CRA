@@ -156,13 +156,14 @@ export const reducer: Reducer<GameState> = (
       const dealer = action.playerNames[0];
       //TODO: This should probably be a function of some sort. Maybe an action creator, or just a "get a new hand of cards for each player"
       // Possibly even a "create a new hand of cards, including turnup".
-      const newHand = <Partial<Round>>{
+      const newHand = <Round>{
         playedCards: [],
         cardsInHand: [
           { player: action.playerNames[0], cards: [] },
           { player: action.playerNames[1], cards: [] }
         ],
         crib: { player: dealer, cards: [] },
+        turnUp: { suit: Suit.Spades, number: 1 },
         phase: PHASE.DEAL,
         runningTotal: 0,
         whoseTurn: dealer,
