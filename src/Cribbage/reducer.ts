@@ -152,24 +152,23 @@ export const reducer: Reducer<GameState> = (
   const action = incomingAction as KnownAction;
   switch (action.type) {
     case typeKeys.newGame:
-      const namedPlayers = action.playerNames.map(name => (<Player>{score: 0, id: name}));
+      const namedPlayers = action.playerNames.map(name => (<Player>{ score: 0, id: name }));
       const dealer = action.playerNames[0];
       //TODO: This should probably be a function of some sort. Maybe an action creator, or just a "get a new hand of cards for each player"
       // Possibly even a "create a new hand of cards, including turnup".
-      const newHand = <Round>{
+      const newHand = <Partial<Round>>{
         playedCards: [],
         cardsInHand: [
           { player: action.playerNames[0], cards: [] },
           { player: action.playerNames[1], cards: [] }
         ],
         crib: { player: dealer, cards: [] },
-        turnUp: { suit: Suit.Spades, number: 1 },
         phase: PHASE.DEAL,
         runningTotal: 0,
         whoseTurn: dealer,
         dealer: dealer
       };
-      return {players: namedPlayers, currentHand: newHand};
+      return { players: namedPlayers, currentHand: newHand };
     case typeKeys.newHand:
       return initialState;
     case typeKeys.addPoints:

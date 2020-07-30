@@ -21,25 +21,3 @@ Object {
   "players": Array [],
 }
 `;
-
-exports[`Player name should start with a blank name 1`] = `
-Object {
-  "currentHand": Object {
-    "playedCards": Array [],
-    "players": Array [],
-    "runningTotal": 0,
-    "turnUp": Object {
-      "number": 1,
-      "suit": "SPADES",
-    },
-    "whoseTurn": 1,
-  },
-  "dealer": Object {
-    "cardsInCrib": Array [],
-    "cardsInHand": Array [],
-    "id": "",
-    "score": 0,
-  },
-  "players": Array [],
-}
-`;
